@@ -25,6 +25,7 @@ async function run() {
     const database = client.db("portfolio");
     const educationCollection = database.collection("education");
 
+    // get education api
     app.get("/education", async (req, res) => {
       const educations = await educationCollection.find({}).toArray();
 
