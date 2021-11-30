@@ -21,6 +21,16 @@ async function run() {
   try {
     await client.connect();
     console.log("Connection Established");
+
+    const database = client.db("portfolio");
+    const educationCollection = database.collection("education");
+
+    app.get("/education", async (req, res) => {
+      const cursor = educationCollection.find({});
+      const tours = await cursor.toArray();
+
+      res.send(tours);
+    });
   } finally {
     // await client.close();
   }
