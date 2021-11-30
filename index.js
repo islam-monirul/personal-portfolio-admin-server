@@ -24,12 +24,20 @@ async function run() {
 
     const database = client.db("portfolio");
     const educationCollection = database.collection("education");
+    const workCollection = database.collection("workexperience");
 
     // get education api
     app.get("/education", async (req, res) => {
       const educations = await educationCollection.find({}).toArray();
 
       res.send(educations);
+    });
+
+    // get works api
+    app.get("/works", async (req, res) => {
+      const works = await workCollection.find({}).toArray();
+
+      res.send(works);
     });
   } finally {
     // await client.close();
