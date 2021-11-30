@@ -26,10 +26,9 @@ async function run() {
     const educationCollection = database.collection("education");
 
     app.get("/education", async (req, res) => {
-      const cursor = educationCollection.find({});
-      const tours = await cursor.toArray();
+      const educations = await educationCollection.find({}).toArray();
 
-      res.send(tours);
+      res.send(educations);
     });
   } finally {
     // await client.close();
