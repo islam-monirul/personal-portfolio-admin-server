@@ -25,6 +25,7 @@ async function run() {
     const database = client.db("portfolio");
     const educationCollection = database.collection("education");
     const workCollection = database.collection("workexperience");
+    const projectsCollection = database.collection("projects");
 
     // get education api
     app.get("/education", async (req, res) => {
@@ -38,6 +39,18 @@ async function run() {
       const works = await workCollection.find({}).toArray();
 
       res.send(works);
+    });
+
+    // get project by category
+    app.get("/projects/:category", async (req, res) => {
+      const category = req.params.category;
+
+      const query = { category: category };
+
+      const result = await projectsCollection.find(query).toArray();
+      // console.log(result);
+
+      res.send(result);
     });
   } finally {
     // await client.close();
