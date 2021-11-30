@@ -44,11 +44,14 @@ async function run() {
     // get project by category
     app.get("/projects/:category", async (req, res) => {
       const category = req.params.category;
+      let result;
 
-      const query = { category: category };
-
-      const result = await projectsCollection.find(query).toArray();
-      // console.log(result);
+      if (category === "all") {
+        result = await projectsCollection.find({}).toArray();
+      } else {
+        const query = { category: category };
+        result = await projectsCollection.find(query).toArray();
+      }
 
       res.send(result);
     });
