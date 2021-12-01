@@ -48,7 +48,7 @@ async function run() {
       const category = req.params.category;
       let result;
 
-      if (category === "all") {
+      if (category === "All") {
         result = await projectsCollection.find({}).toArray();
       } else {
         const query = { category: category };
