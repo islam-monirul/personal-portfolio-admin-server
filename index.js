@@ -45,7 +45,8 @@ async function run() {
 
     // get project by category
     app.get("/projects/:category", async (req, res) => {
-      const category = req.params.category;
+      const param = req.params.category;
+      const category = param.toLowerCase();
       let result;
 
       if (category === "All") {
