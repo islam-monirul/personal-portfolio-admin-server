@@ -49,7 +49,7 @@ async function run() {
       const category = param.toLowerCase();
       let result;
 
-      if (category === "All") {
+      if (category === "all") {
         result = await projectsCollection.find({}).toArray();
       } else {
         const query = { category: category };
